@@ -138,7 +138,7 @@ tool. Simply add an IP address in order to deploy your application from that spe
    Adding an access token
 
 For more information, please read our guide on how to deploy Docker apps to the LfPHP Cloud using
-**Linux for Composer** (`<https://linuxforphp.com/files/guides/file.pdf>`_).
+**Linux for Composer** (`<https://linuxforphp.com/doc/guides/how-to-use-linux-for-composer-to-deploy-to-the-cloud.pdf>`_).
 
 .. _one-click_apps:
 
@@ -190,6 +190,9 @@ to complete the final details of the installation.
    :alt: New app is available
 
    New app is available
+
+For more information, please read our guide on how to create an instant ecommerce website using the LfPHP Cloud
+(`<https://linuxforphp.com/doc/guides/how-to-create-an-instant-ecommerce-website-using-lfphp-cloud-services.pdf>`_).
 
 .. _lambda_cloud:
 
@@ -243,7 +246,7 @@ a :ref:`backups` of your code before continuing.
 .. figure:: /images/Lambda_Add_Deploy_Warning.png
    :alt: Installation confirmation
 
-   Installation confirmation
+   Deployment confirmation
 
 Once you are ready to deploy, please proceed, and wait for the confirmation that your new Lambda functions
 were deployed to the LfPHP Cloud.
@@ -359,6 +362,9 @@ in a Response object:
 
 The PHP Lambda Cloud makes it possible for the developer to build Web pages, API endpoints,
 or mixed mobile application back end logic in minutes!
+
+For more information, please read our guide on how to deploy PHP Lambda functions to the LfPHP Cloud
+(`<https://linuxforphp.com/doc/guides/how-to-create-an-interactive-html-website-using-lfphp-lambda-cloud.pdf>`_).
 
 .. _backups:
 
