@@ -5,15 +5,15 @@ Getting started
 
 .. index:: Getting started
 
-The LfPHP Cloud offers a simple way to get you online, as quickly and as easily as possible: one-click application publishing.
+The LfPHP Cloud offers a simple way to get you online, as quickly and as easily as possible, with one-click application publishing.
 
 .. index:: Dashboard
 
 Dashboard
 ---------
 
-The LfPHP Cloud Services' **Dashboard** offers convenient one-click options to set up many kinds of website,
-spin up many types of service, add domains and secure them using SSL, and much more!
+The LfPHP Cloud Services' **Dashboard** offers convenient one-click options to set up many kinds of websites,
+to spin up many types of service and secure them using SSL, to add domains, email accounts, and much more!
 
 .. figure:: /images/Dashboard.png
    :alt: The Dashboard
@@ -23,16 +23,18 @@ spin up many types of service, add domains and secure them using SSL, and much m
 The main options offered on the Dashboard are:
 
 - :ref:`status`
+- :ref:`file_browser`
 - :ref:`server_configuration`
-- :ref:`domains`
-- :ref:`security`
-- :ref:`access_tokens`
 - :ref:`one-click_apps`
 - :ref:`lambda_cloud`
+- :ref:`domains`
+- :ref:`security`
+- :ref:`email`
+- :ref:`access_tokens`
 - :ref:`backups`
 - :ref:`logs`
 - :ref:`statistics`
-- :ref:`file_browser`
+- :ref:`ssh_access`
 
 .. _status:
 
@@ -57,6 +59,42 @@ If you've deployed your website using one of our one-click apps, you will also b
 the hosting access password (not your main account password) by clicking on the
 ``Reset Access Password`` button.
 
+.. _file_browser:
+
+File Browser
+------------
+
+.. index:: File browser
+
+If you have installed one of the :ref:`one-click_apps`, you will be able to access the file system of
+your app in the **File browser** that can be found in the :ref:`status` section. Using this utility,
+you can move, copy, edit, delete, upload, or zip archive specific files or folders. You can also restore
+backups of your files using the LfPHP file browser.
+
+.. figure:: /images/File_Browser.png
+   :alt: The File browser
+
+   The File browser
+
+.. index:: Crons
+
+If you access the **File browser**, you will notice that you can access the **Cron** files from the
+root folder. You can therefore edit the cron files if you need to run certain tasks at certain intervals
+of time on your hosting account.
+
+.. figure:: /images/Crons.png
+   :alt: The Cron files
+
+   The Cron files
+
+Here is an example on how to execute a cURL request to run the cron job of a **Drupal** installation:
+
+.. code-block:: bash
+
+    curl http://myaccount.linuxforphp.com/cron/qH9iYDiCQPcouUbws1iasCMVhOERUq99bIFOLlUe4KAMfs9eSH1yvmSgCvLA9g
+
+.. note:: All cron jobs are run as the user 'root' on the hosting server.
+
 .. _server_configuration:
 
 Server Configuration
@@ -74,71 +112,6 @@ available on your server.
    Server configuration options
 
 .. note:: The 'Default' PHP version will always correspond to the optimal version of the one-click app that you're deploying to your hosting server.
-
-.. _domains:
-
-Domains
--------
-
-.. index:: Domains
-
-The **Domains** section gives you the option of adding domain names to your hosting account. If you do not
-already own the domain name that you wish to add to your account, you can buy the domain through our own
-registrar (it will require that you create an additional registrar account with us). If you do own the
-domain name, you can simply modify your DNS server and have it point to the IP address that the system
-will give you once you've added the name of the domain in this section.
-
-.. figure:: /images/Domains.png
-   :alt: Domain added
-
-   Adding a domain
-
-.. note:: Once the domain resolves itself to your hosting server, the domain name will automatically be secured with a **Let's Encrypt** certificate (see :ref:`security`).
-
-.. _security:
-
-Security
---------
-
-.. index:: Security
-
-.. index:: SSL Certificates
-
-The **Security** section informs you if your domain names have been secured, or not, with a
-**Let's Encrypt** certificate.
-
-.. figure:: /images/Security.png
-   :alt: Security section
-
-   Security section
-
-If you have made sure that the domain name resolves itself correctly to your hosting server
-(see :ref:`domains`), then the domain name should automatically be secured. If not,
-please contact our customer service.
-
-.. figure:: /images/Security_Success.png
-   :alt: Domains were secured
-
-   Domains were secured
-
-.. _access_tokens:
-
-Access Tokens
--------------
-
-.. index:: Access Tokens
-
-The **Access Tokens** section lets you add security tokens in order to deploy apps to your hosting server
-directly from your computer's CLI, using the `Linux for Composer <https://linux-for-composer.readthedocs.io/en/latest/configuration.html#linux-for-php-cloud-mode>`_
-tool. Simply add an IP address in order to deploy your application from that specific IP address.
-
-.. figure:: /images/Access_Tokens.png
-   :alt: Adding an access token
-
-   Adding an access token
-
-For more information, please read our guide on how to deploy Docker apps to the LfPHP Cloud using
-**Linux for Composer** (`<https://linuxforphp.com/doc/guides/how-to-use-linux-for-composer-to-deploy-to-the-cloud.pdf>`_).
 
 .. _one-click_apps:
 
@@ -366,6 +339,94 @@ or mixed mobile application back end logic in minutes!
 For more information, please read our guide on how to deploy PHP Lambda functions to the LfPHP Cloud
 (`<https://linuxforphp.com/doc/guides/how-to-create-an-interactive-html-website-using-lfphp-lambda-cloud.pdf>`_).
 
+.. _domains:
+
+Domains
+-------
+
+.. index:: Domains
+
+The **Domains** section gives you the option of adding domain names to your hosting account. If you do not
+already own the domain name that you wish to add to your account, you can buy the domain through our own
+registrar (it will require that you create an additional registrar account with us). If you do own the
+domain name, you can simply modify your DNS server and have it point to the IP address that the system
+will give you once you've added the name of the domain in this section.
+
+.. figure:: /images/Domains.png
+   :alt: Domain added
+
+   Adding a domain
+
+.. note:: Once the domain resolves itself to your hosting server, the domain name will automatically be secured with a **Let's Encrypt** certificate (see :ref:`security`). It is also possible to run your domain behind a reverse proxy service like `Cloudflare <https://www.cloudflare.com/>`_.
+
+.. _security:
+
+Security
+--------
+
+.. index:: Security
+
+.. index:: SSL Certificates
+
+The **Security** section informs you if your domain names have been secured, or not, with a
+**Let's Encrypt** certificate.
+
+.. figure:: /images/Security.png
+   :alt: Security section
+
+   Security section
+
+If you have made sure that the domain name resolves itself correctly to your hosting server
+(see :ref:`domains`), then the domain name should automatically be secured. If not,
+please contact our customer service.
+
+.. figure:: /images/Security_Success.png
+   :alt: Domains were secured
+
+   Domains were secured
+
+.. _email:
+
+Email Accounts
+--------------
+
+.. index:: Email Accounts
+
+The **Email Accounts** section gives you the option of adding email accounts to your hosting account. In order
+to add, delete, or modify your email accounts, you can click on the ``Email Us`` button. Once the email accounts
+are added to your hosting plan, they will be displayed in this section of the page, with links to the Webmail log in
+page, thus allowing you to read your email from anywhere in the World. It is also possible to set up a mail client, like
+Thunderbird or your mobile phone's mail application, in order to receive your email on a specified device.
+
+The 'General Information' sub-section gives you information on how many email accounts are still available for
+your hosting plan, and offers you an easy way to modify your email accounts at any given time.
+
+.. figure:: /images/Email.png
+   :alt: Email account added
+
+   List of email accounts associated to the current hosting account
+
+.. note:: Once you receive an email from our customer services, you will have all of the necessary instructions to get the email accounts up and running. For example, the included instructions will tell you how to make sure that the MX record for your email domain is set to the IP of our mail servers.
+
+.. _access_tokens:
+
+Access Tokens
+-------------
+
+.. index:: Access Tokens
+
+The **Access Tokens** section lets you add security tokens in order to deploy apps to your hosting server
+directly from your computer's CLI, using the `Linux for Composer <https://linux-for-composer.readthedocs.io/en/latest/configuration.html#linux-for-php-cloud-mode>`_
+tool. Simply add an IP address in order to deploy your application from that specific IP address.
+
+.. figure:: /images/Access_Tokens.png
+   :alt: Adding an access token
+
+   Adding an access token
+
+For more information, please read our guide on how to deploy Docker apps to the LfPHP Cloud using
+**Linux for Composer** (`<https://linuxforphp.com/doc/guides/how-to-use-linux-for-composer-to-deploy-to-the-cloud.pdf>`_).
+
 .. _backups:
 
 Backups
@@ -381,7 +442,7 @@ the files of the :ref:`one-click_apps`.
 
    A backup was successfully generated
 
-.. note:: Backups or your databases must be done through the phpMyAdmin interface. The databases are NOT included in these backups!
+.. note:: Backups of your databases must be done through the phpMyAdmin interface. The databases are NOT included in these backups!
 
 .. _logs:
 
@@ -412,38 +473,19 @@ of the :ref:`one-click_apps`.
 
    Access Webalizer records
 
-.. _file_browser:
+.. _ssh_access:
 
-File Browser
-------------
+SSH Access
+----------
 
-.. index:: File browser
+.. index:: SSH Access
 
-If you have installed one of the :ref:`one-click_apps`, you will be able to access the file system of
-your app in the **File browser** that can be found in the :ref:`status` section. Using this utility,
-you can move, copy, edit, delete, upload, or zip archive specific files or folders. You can also restore
-backups of your files using the LfPHP file browser.
+The **SSH Access** section gives you the information that you need in order to access your hosting plan
+from the command line. In order to gain access and obtain an SSH private key, please click on the
+``Email Us`` button. Once you receive an email from our customer services, you will have all of the
+necessary instructions to access your hosting plan remotely through your computer's CLI.
 
-.. figure:: /images/File_Browser.png
-   :alt: The File browser
+.. figure:: /images/SSH_Access.png
+   :alt: SSH Access section
 
-   The File browser
-
-.. index:: Crons
-
-If you access the **File browser**, you will notice that you can access the **Cron** files from the
-root folder. You can therefore edit the cron files if you need to run certain tasks at certain intervals
-of time on your hosting account.
-
-.. figure:: /images/Crons.png
-   :alt: The Cron files
-
-   The Cron files
-
-Here is an example on how to execute a cURL request to run the cron job of a **Drupal** installation:
-
-.. code-block:: bash
-
-    curl http://myaccount.linuxforphp.com/cron/qH9iYDiCQPcouUbws1iasCMVhOERUq99bIFOLlUe4KAMfs9eSH1yvmSgCvLA9g
-
-.. note:: All cron jobs are run as the user 'root' on the hosting server.
+   SSH configuration details
