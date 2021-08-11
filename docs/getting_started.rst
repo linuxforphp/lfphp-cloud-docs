@@ -61,24 +61,24 @@ the hosting access password (not your main account password) by clicking on the
 
 .. _file_browser:
 
-File Browser
-------------
+FileBrowser
+-----------
 
 .. index:: File browser
 
 If you have installed one of the :ref:`one-click_apps`, you will be able to access the file system of
-your app in the **File browser** that can be found in the :ref:`status` section. Using this utility,
+your app in the **FileBrowser** that can be found in the :ref:`status` section. Using this utility,
 you can move, copy, edit, delete, upload, or zip archive specific files or folders. You can also restore
-backups of your files using the LfPHP file browser.
+backups of your files using the LfPHP FileBrowser.
 
 .. figure:: /images/File_Browser.png
-   :alt: The File browser
+   :alt: The FileBrowser
 
-   The File browser
+   The FileBrowser Application
 
 .. index:: Crons
 
-If you access the **File browser**, you will notice that you can access the **Cron** files from the
+If you access the **FileBrowser**, you will notice that you can access the **Cron** files from the
 root folder. You can therefore edit the cron files if you need to run certain tasks at certain intervals
 of time on your hosting account.
 
@@ -426,6 +426,102 @@ tool. Simply add an IP address in order to deploy your application from that spe
 
 For more information, please read our guide on how to deploy Docker apps to the LfPHP Cloud using
 **Linux for Composer** (`<https://linuxforphp.com/doc/guides/how-to-use-linux-for-composer-to-deploy-to-the-cloud.pdf>`_).
+
+.. _continuous_delivery:
+
+Continuous Delivery (CI/CD)
+---------------------------
+
+.. index:: Continuous Delivery
+
+The **Continuous Delivery** section lets you add security tokens in order to deploy apps from **GitHub**,
+**GitLab**, or **Bitbucket**, using webhooks and the `Linux for Composer Helper Library <https://packagist.org/packages/linuxforphp/linuxforcomposer>`_.
+
+.. figure:: /images/Continuous_Delivery_Disabled.png
+   :alt: Continuous Delivery section
+
+   Continuous Delivery section
+
+Simply click on the ``Enabled`` radio button for the service for which you want to set up a deployment
+webhook. From there, you can create the webhook in the code repository's settings in order to start
+deploying your app automatically to your hosting account.
+
+To disable the access, click on the ``Disabled`` radio button. If you re-enable the access,
+you will get a new token, and you will have to update the secret key of your repository's webhook.
+
+.. note:: Only ``Push`` events on the ``Master`` (or ``Main``) branch will be deployed, and those requests will receive a ``201 Created`` response on successful deployment. All other events and branches will be ignored, and those requests will receive a ``204 No content`` response.
+
+Once the webhook is set up correctly, webhook requests from the repository will be processed, and the
+**LfPHP Cloud** deployment manager will look for a ``linuxforcomposer.json`` file at the root of your
+repository's ``Master`` (or ``Main``) branch in order to begin deployment of your application.
+To find a few ``linuxforcomposer.json`` file templates that can help you get started, please visit
+our repository at `<https://github.com/linuxforphp/lfphp-cloud-templates>`_.
+
+For more information on **Linux for Composer**, please read our guide on how to deploy Docker apps
+to the LfPHP Cloud using **Linux for Composer** (`<https://linuxforphp.com/doc/guides/how-to-use-linux-for-composer-to-deploy-to-the-cloud.pdf>`_).
+
+GitHub
+^^^^^^
+
+.. index:: GitHub Webhook
+
+To set up a webhook for a repository hosted on **GitHub**, start by enabling the endpoint in your
+**LfPHP Cloud** hosting account:
+
+.. figure:: /images/Continuous_Delivery_Enabled_GitHub.png
+   :alt: Enabling the GitHub endpoint
+
+   Enabling the GitHub endpoint
+
+In your **GitHub** repository's settings, add a webhook by pasting in the endpoint URL, the secret
+token key, and clicking the ``Save`` button. All of the other default settings should not be modified.
+
+.. figure:: /images/Continuous_Delivery_GitHub.png
+   :alt: Adding the GitHub webhook
+
+   Adding the GitHub webhook
+
+GitLab
+^^^^^^
+
+.. index:: GitLab Webhook
+
+To set up a webhook for a repository hosted on **GitLab**, start by enabling the endpoint in your
+**LfPHP Cloud** hosting account:
+
+.. figure:: /images/Continuous_Delivery_Enabled_GitLab.png
+   :alt: Enabling the GitLab endpoint
+
+   Enabling the GitLab endpoint
+
+In your **GitLab** repository's settings, add a webhook by pasting in the endpoint URL, the secret
+token key, and clicking the ``Save`` button. All of the other default settings should not be modified.
+
+.. figure:: /images/Continuous_Delivery_GitLab.png
+   :alt: Adding the GitLab webhook
+
+   Adding the GitLab webhook
+
+Bitbucket
+^^^^^^^^^
+
+.. index:: Bitbucket Webhook
+
+To set up a webhook for a repository hosted on **Bitbucket**, start by enabling the endpoint in your
+**LfPHP Cloud** hosting account:
+
+.. figure:: /images/Continuous_Delivery_Enabled_Bitbucket.png
+   :alt: Enabling the Bitbucket endpoint
+
+   Enabling the Bitbucket endpoint
+
+In your **Bitbucket** repository's settings, add a webhook by pasting in the endpoint URL, and
+clicking the ``Save`` button. All of the other default settings should not be modified.
+
+.. figure:: /images/Continuous_Delivery_Bitbucket.png
+   :alt: Adding the Bitbucketwebhook
+
+   Adding the Bitbucket webhook
 
 .. _backups:
 
