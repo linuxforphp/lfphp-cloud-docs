@@ -23,7 +23,7 @@ to spin up many types of service and secure them using SSL, to add domains, emai
 The main options offered on the Dashboard are:
 
 - :ref:`status`
-- :ref:`file_browser`
+- :ref:`filebrowser`
 - :ref:`server_configuration`
 - :ref:`one-click_apps`
 - :ref:`lambda_cloud`
@@ -54,31 +54,33 @@ if need be.
    Status of the hosting server
 
 If you've deployed your website using one of our one-click apps, you will also be able to access the
-:ref:`file_browser` of your hosting server and your MariaDB (MySQL) databases through the
+:ref:`filebrowser` of your hosting server and your MariaDB (MySQL) databases through the
 `phpMyAdmin <https://www.phpmyadmin.net/>`_ Web interface. Moreover, you'll have the ability to reset
 the hosting access password (not your main account password) by clicking on the
 ``Reset Access Password`` button.
 
-.. _file_browser:
+.. _filebrowser:
 
 FileBrowser
 -----------
 
 .. index:: File browser
 
-If you have installed one of the :ref:`one-click_apps`, you will be able to access the file system of
-your app in the **FileBrowser** that can be found in the :ref:`status` section. Using this utility,
-you can move, copy, edit, delete, upload, or zip archive specific files or folders. You can also restore
-backups of your files using the LfPHP FileBrowser.
+If you have installed one of the :ref:`one-click_apps`, or you are using a **Linux for PHP** Docker image with
+the ``lfphp`` startup command, you will be able to access the file system of your hosting account in the **FileBrowser**
+that can be found in the :ref:`status` section. Using this utility, you will be able to move, copy, edit, delete, upload,
+zip, or unzip specific files or folders. The **LfPHP FileBrowser** also makes it very easy for you to restore archived backups.
 
 .. figure:: /images/File_Browser.png
    :alt: The FileBrowser
 
    The FileBrowser Application
 
+.. _crons:
+
 .. index:: Crons
 
-If you access the **FileBrowser**, you will notice that you can access the **Cron** files from the
+If you access the **FileBrowser**, you will notice that you can access the **crons** folder from the
 root folder. You can therefore edit the cron files if you need to run certain tasks at certain intervals
 of time on your hosting account.
 
@@ -426,6 +428,63 @@ tool. Simply add an IP address in order to deploy your application from that spe
 
 For more information, please read our guide on how to deploy Docker apps to the LfPHP Cloud using
 **Linux for Composer** (`<https://linuxforphp.com/doc/guides/how-to-use-linux-for-composer-to-deploy-to-the-cloud.pdf>`_).
+
+.. _aws_s3_bucket_sync:
+
+AWS S3 Bucket Sync
+------------------
+
+.. index:: AWS S3 Bucket Sync
+
+The **AWS S3 Bucket Sync** section lets you set up a folder that will sync itself with an AWS S3 bucket.
+
+.. figure:: /images/AWS_S3_Bucket_Sync.png
+   :alt: The AWS S3 Bucket Sync section
+
+   The AWS S3 Bucket Sync section
+
+In order to add a new synced folder to your hosting account, add the name of your S3 bucket, the Access Key ID,
+the secret access key, the destination folder on your hosting account (the FileBrowser's root folder is ``/srv/tempo/``),
+and check or uncheck the bidirectional feature.
+
+.. figure:: /images/AWS_S3_Bucket_Sync_Add.png
+   :alt: Adding an AWS S3 Bucket
+
+   Adding an AWS S3 Bucket
+
+To learn how to set up an S3 bucket, and configure the IAM access key, please see the `AWS Documentation for S3 Buckets <https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html>`_, and the `AWS Documentation for IAM <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-creds>`_.
+
+The destination folder is where you will store the synced folder. The synced folder is where you will find the files that will
+be downloaded from the S3 bucket. When accessing files through the :ref:`filebrowser`, the root folder is ``/srv/tempo/``,
+which is the default destination folder to store the synced folder. The destination folder can be changed according to your needs.
+
+The bidirectional feature allows you to turn on (default) or off file mirroring. If turned on, this feature will allow you to easily
+back up all of your files to your S3 bucket.
+
+.. note:: Please note that the bidirectional feature NEVER deletes files in the S3 bucket. A manual intervention inside your S3 bucket will be necessary in order to delete unwanted files.
+
+Once you click on the ``Add`` button, the newly added folder will appear within a few seconds.
+
+.. figure:: /images/AWS_S3_Bucket_Sync_List.png
+   :alt: The newly added AWS S3 Bucket Sync folder
+
+   The newly added AWS S3 Bucket Sync folder
+
+By default, the LfPHP Cloud will sync the contents of the new folder with your AWS S3 bucket every hour. The new cron
+job can be found in the ``crons.hourly`` file, which is located in the ``crons`` folder. Please see the :ref:`filebrowser` section.
+
+.. figure:: /images/Crons.png
+   :alt: The Crons folder
+
+   The Crons folder
+
+The new cron can be modified to better suit your needs by cutting and pasting the ``/srv/awss3synccron`` command to another
+cron file, thus allowing you to change how frequently the folder will be synced with your AWS S3 bucket.
+
+.. figure:: /images/AWS_S3_Bucket_Sync_Cron.png
+   :alt: The AWS S3 Bucket Sync cron job
+
+   The AWS S3 Bucket Sync cron job
 
 .. _continuous_delivery:
 
